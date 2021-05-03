@@ -10,3 +10,9 @@ Description: Support for opengl
 
 Feature: direct3d11
 Description: Support for direct3d11
+
+Feature: direct3d12
+Description: Support for direct3d12
+
+Feature: vulkan
+Description: Support for vulkan

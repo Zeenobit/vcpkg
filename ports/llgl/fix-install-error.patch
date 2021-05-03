@@ -1,44 +1,65 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index f440884..d1b0c2f 100644
+
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -614,6 +614,12 @@ if(LLGL_BUILD_RENDERER_OPENGL)
-         target_link_libraries(LLGL_OpenGL LLGL ${OPENGL_LIBRARIES})
+@@ -672,6 +672,11 @@ if(LLGL_BUILD_RENDERER_OPENGL)
          
          ADD_DEFINE(LLGL_BUILD_RENDERER_OPENGL)
+         ADD_PROJECT_DEFINE(LLGL_OpenGL LLGL_OPENGL)
 +        
 +        install(TARGETS LLGL_OpenGL
 +                RUNTIME DESTINATION bin
 +                LIBRARY DESTINATION lib
-+                ARCHIVE DESTINATION lib
-+        )
++                ARCHIVE DESTINATION lib)
      else()
          message("Missing OpenGL -> LLGL_OpenGL renderer will be excluded from project")
      endif()
-@@ -681,6 +687,12 @@ if(WIN32)
+@@ -694,6 +699,11 @@ if(NOT APPLE AND LLGL_BUILD_RENDERER_VULKAN)
+         target_link_libraries(LLGL_Vulkan LLGL ${Vulkan_LIBRARY})
+         
+         ADD_DEFINE(LLGL_BUILD_RENDERER_VULKAN)
++        
++        install(TARGETS LLGL_Vulkan
++                RUNTIME DESTINATION bin
++                LIBRARY DESTINATION lib
++                ARCHIVE DESTINATION lib)
+     else()
+         message("Missing Vulkan -> LLGL_Vulkan renderer will be excluded from project")
+     endif()
+@@ -744,6 +754,11 @@ if(WIN32)
          target_link_libraries(LLGL_Direct3D11 LLGL d3d11 dxgi D3DCompiler)
          
          ADD_DEFINE(LLGL_BUILD_RENDERER_DIRECT3D11)
 +        
-+         install(TARGETS LLGL_Direct3D11
-+                 RUNTIME DESTINATION bin
-+                 LIBRARY DESTINATION lib
-+                 ARCHIVE DESTINATION lib
-+        )
++        install(TARGETS LLGL_Direct3D11
++                RUNTIME DESTINATION bin
++                LIBRARY DESTINATION lib
++                ARCHIVE DESTINATION lib)
      endif()
      
      if(LLGL_BUILD_RENDERER_DIRECT3D12)
-@@ -821,4 +833,13 @@ if(LLGL_ENABLE_SPIRV_REFLECT)
-     message("Including Submodule: SPIRV")
+@@ -760,6 +775,11 @@ if(WIN32)
+         target_compile_definitions(LLGL_Direct3D12 PUBLIC -DLLGL_DX_ENABLE_D3D12)
+         
+         ADD_DEFINE(LLGL_BUILD_RENDERER_DIRECT3D12)
++        
++        install(TARGETS LLGL_Direct3D12
++                RUNTIME DESTINATION bin
++                LIBRARY DESTINATION lib
++                ARCHIVE DESTINATION lib)
+     endif()
+ endif()
+ 
+@@ -906,4 +926,12 @@ if(LLGL_ENABLE_SPIRV_REFLECT)
+     message("Including Submodule: SPIRV-Headers")
  endif()
  
 +# Install targets
 +install(TARGETS ${PROJECT_NAME}
-+  RUNTIME DESTINATION bin
-+  LIBRARY DESTINATION lib
-+  ARCHIVE DESTINATION lib
-+)
++        RUNTIME DESTINATION bin
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)
++
 +# Install headers
 +install(DIRECTORY ${PROJECT_INCLUDE_DIR} DESTINATION .)
-+
  

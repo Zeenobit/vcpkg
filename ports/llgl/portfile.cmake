@@ -5,17 +5,18 @@ endif()
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO LukasBanana/LLGL
-    REF 8f28437960ed60622e94f4f97b24e842b5a0e9e6
-    SHA512 8a6bd4109e977f9def0f04a3d31f7bd4beebbe162c52eaa08a54daf8335871615215ece166e5a9d5b5475b834fd53a26ff9638ff270a2f00c88bab21ed156760
+    REF e7ee7ef7a0c8f4168863d9ea6e28ae53e55330d8
+    SHA512 c0142f4f76887425f81c74a3969d5769da2eff9c41aed8bc8d1fdf9c98681c8629350e6fbd393630bf4b79f1a4ca5809cee1eb177b0a4df498e3026f2a81d5aa
     HEAD_REF master
     PATCHES 
         fix-install-error.patch
-        fix-arm64-build-error.patch
 )
 
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
     opengl     LLGL_BUILD_RENDERER_OPENGL
     direct3d11 LLGL_BUILD_RENDERER_DIRECT3D11 
+    direct3d12 LLGL_BUILD_RENDERER_DIRECT3D12 
+    vulkan     LLGL_BUILD_RENDERER_VULKAN
 )
 
 vcpkg_configure_cmake(
